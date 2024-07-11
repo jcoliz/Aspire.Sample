@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspire.Sample.Tests", "Aspi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspire.Sample.Entities", "Aspire.Sample.Entities\Aspire.Sample.Entities.csproj", "{941EA527-BCEB-4348-AC0C-57EC984EBD6E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspire.Sample.Data.Postgres", "Aspire.Sample.Data.Postgres\Aspire.Sample.Data.Postgres.csproj", "{89F39B7F-B56F-4D0F-8DE3-79B2BEA166C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{941EA527-BCEB-4348-AC0C-57EC984EBD6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{941EA527-BCEB-4348-AC0C-57EC984EBD6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{941EA527-BCEB-4348-AC0C-57EC984EBD6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89F39B7F-B56F-4D0F-8DE3-79B2BEA166C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89F39B7F-B56F-4D0F-8DE3-79B2BEA166C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89F39B7F-B56F-4D0F-8DE3-79B2BEA166C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89F39B7F-B56F-4D0F-8DE3-79B2BEA166C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
