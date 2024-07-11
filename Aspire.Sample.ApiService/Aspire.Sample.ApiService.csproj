@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Aspire.Sample.Entities\Aspire.Sample.Entities.csproj" />
     <ProjectReference Include="..\Aspire.Sample.ServiceDefaults\Aspire.Sample.ServiceDefaults.csproj" />
   </ItemGroup>
 
