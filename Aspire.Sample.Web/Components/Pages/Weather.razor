@@ -1,7 +1,7 @@
 ﻿@page "/weather"
+@rendermode InteractiveServer
 @attribute [StreamRendering(true)]
 @attribute [OutputCache(Duration = 5)]
-
 @inject Aspire.Sample.ApiClients.ApiClient _ApiClient
 
 <PageTitle>Weather</PageTitle>
@@ -9,6 +9,8 @@
 <h1>Weather</h1>
 
 <p>This component demonstrates showing data loaded from a backend API service.</p>
+
+<button class="btn btn-primary" @onclick="AddForecast">Add forecast</button>
 
 @if (forecasts == null)
 {
@@ -44,6 +46,12 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        forecasts = await _ApiClient.GetWeatherforecastAsync();
+    }
+
+    private async Task AddForecast()
+    {
+        await _ApiClient.AddWeatherForecastAsync();
         forecasts = await _ApiClient.GetWeatherforecastAsync();
     }
 }

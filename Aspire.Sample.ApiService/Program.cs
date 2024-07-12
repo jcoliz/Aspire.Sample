@@ -52,6 +52,21 @@ app.MapGet("/weatherforecast", async (IDataProvider data) =>
     return forecasts.ToArray();
 });
 
+app.MapPut("/weatherforecast", async (IDataProvider data) =>
+{
+    var forecast = new WeatherForecast
+    (
+        0,
+        DateOnly.FromDateTime(DateTime.Now),
+        Random.Shared.Next(-20, 55),
+        summaries[Random.Shared.Next(summaries.Length)]
+    );
+
+    data.Add(forecast);
+    await data.SaveChangesAsync();
+})
+.WithName("AddWeatherForecast");
+
 app.MapDefaultEndpoints();
 
 app.Run();
