@@ -7,14 +7,22 @@
   </PropertyGroup>
 
 	<ItemGroup>
-    	<PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
-      <PackageReference Include="NSwag.AspNetCore" Version="14.0.3" />
-    </ItemGroup>
+		<PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
+		<PackageReference Include="NSwag.AspNetCore" Version="14.0.3" />
+	    <PackageReference Include="NSwag.MSBuild" Version="14.0.3">
+		    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		    <PrivateAssets>all</PrivateAssets>
+	    </PackageReference>
+	</ItemGroup>
 
 	<ItemGroup>
     <ProjectReference Include="..\Aspire.Sample.Data.Postgres\Aspire.Sample.Data.Postgres.csproj" />
     <ProjectReference Include="..\Aspire.Sample.Entities\Aspire.Sample.Entities.csproj" />
     <ProjectReference Include="..\Aspire.Sample.ServiceDefaults\Aspire.Sample.ServiceDefaults.csproj" />
   </ItemGroup>
+
+	<Target Name="NSwag" AfterTargets="PostBuildEvent">
+		<Exec WorkingDirectory="$(ProjectDir)" Command="$(NSwagExe_Net80) run $(ProjectDir)\nswag.json /variables:Configuration=$(Configuration)"/>
+	</Target>
 
 </Project>
