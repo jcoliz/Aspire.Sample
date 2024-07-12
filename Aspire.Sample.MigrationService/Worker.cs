@@ -1,23 +1,25 @@
+using Aspire.Sample.Data;
+
 namespace Aspire.Sample.MigrationService;
 
-public class Worker : BackgroundService
+public partial class Worker(ILogger<Worker> logger, IServiceProvider serviceProvider) : BackgroundService
 {
-    private readonly ILogger<Worker> _logger;
-
-    public Worker(ILogger<Worker> logger)
-    {
-        _logger = logger;
-    }
+    public readonly ILogger _logger = logger;
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            if (_logger.IsEnabled(LogLevel.Information))
+            using (var scope = serviceProvider.CreateScope())
             {
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+                var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                var ok = dbContext.Database.CanConnect();
+                LogHeartbeat(ok);
             }
             await Task.Delay(1000, stoppingToken);
         }
     }
+
+    [LoggerMessage(Level = LogLevel.Information, Message = "Database status: {CanConnect}")]
+    public partial void LogHeartbeat(bool canConnect);
 }

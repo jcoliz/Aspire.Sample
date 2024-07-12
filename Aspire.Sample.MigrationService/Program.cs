@@ -1,7 +1,18 @@
+using Aspire.Sample.Data;
 using Aspire.Sample.MigrationService;
 
 var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddHostedService<Worker>();
 
-var host = builder.Build();
-host.Run();
+//builder.Services.AddHostedService<ApiDbInitializer>();
+
+builder.AddServiceDefaults();
+
+//builder.Services.AddOpenTelemetry()
+//    .WithTracing(tracing => tracing.AddSource(ApiDbInitializer.ActivitySourceName));
+
+builder.AddNpgsqlDbContext<ApplicationDbContext>("forecasts");
+
+var app = builder.Build();
+
+app.Run();
