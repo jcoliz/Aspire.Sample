@@ -1,4 +1,4 @@
-using Aspire.Sample.Web;
+using Aspire.Sample.ApiClients;
 using Aspire.Sample.Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +14,7 @@ builder.Services.AddRazorComponents()
 // Get base address from injected config
 var baseaddress = builder.Configuration["services:api:https:0"];
 
-builder.Services.AddHttpClient<Aspire.Sample.ApiClients.ApiClient>(client =>
+builder.Services.AddHttpClient<ApiClient>(client =>
     {
         client.BaseAddress = new(baseaddress!);
     });
