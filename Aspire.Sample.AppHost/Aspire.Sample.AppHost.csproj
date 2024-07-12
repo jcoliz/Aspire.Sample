@@ -11,7 +11,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Aspire.Sample.ApiService\Aspire.Sample.ApiService.csproj" />
-    <ProjectReference Include="..\Aspire.Sample.Web\Aspire.Sample.Web.csproj" />
+    <ProjectReference Include="..\Aspire.Sample.MigrationService\Aspire.Sample.MigrationService.csproj" />
+	<ProjectReference Include="..\Aspire.Sample.Web\Aspire.Sample.Web.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -11,6 +11,9 @@ var postgresDb = builder.AddPostgres("postgres")
 var apiService = builder.AddProject<Projects.Aspire_Sample_ApiService>("apiservice")
     .WithReference(postgresDb);
 
+builder.AddProject<Projects.Aspire_Sample_MigrationService>("migration")
+       .WithReference(postgresDb);
+
 builder.AddProject<Projects.Aspire_Sample_Web>("webfrontend")
     .WithExternalHttpEndpoints()
     .WithReference(cache)

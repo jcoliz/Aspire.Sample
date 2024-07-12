@@ -25,16 +25,13 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-app.MapGet("/weatherforecast", (IDataProvider data) =>
+app.MapGet("/weatherforecast", async (IDataProvider data) =>
 {
-        //var query = data.Get<WeatherForecast>().OrderByDescending(x=>x.Date).Take(10);
+    var query = data.Get<WeatherForecast>().OrderByDescending(x=>x.Date).Take(10);
 
-        //var forecasts = await data.ToListNoTrackingAsync(query);
+    var forecasts = await data.ToListNoTrackingAsync(query);
 
-        return Array.Empty<WeatherForecast>();
-        //return forecasts.ToArray();
-
-    //return [];
+    return forecasts.ToArray();
 });
 
 app.MapDefaultEndpoints();
