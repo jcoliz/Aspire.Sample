@@ -14,7 +14,7 @@ builder.Services.AddRazorComponents()
 // Get base address from injected config
 var baseaddress = builder.Configuration["services:api:https:0"];
 
-builder.Services.AddHttpClient<WeatherApiClient>(client =>
+builder.Services.AddHttpClient<Aspire.Sample.ApiClients.ApiClient>(client =>
     {
         client.BaseAddress = new(baseaddress!);
     });

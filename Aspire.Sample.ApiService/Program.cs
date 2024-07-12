@@ -1,7 +1,7 @@
 using Aspire.Sample.Data;
 using Aspire.Sample.Models;
 using Aspire.Sample.Providers;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,10 +15,28 @@ builder.Services.AddProblemDetails();
 
 builder.Services.AddScoped<IDataProvider, ApplicationDbContext>();
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddOpenApiDocument(options =>
+{
+    options.Title = "Aspire.Sample Backend";
+    options.Description = "Application boundary between .NET backend and frontend.";
+});
+
+// https://www.meziantou.net/configuring-json-options-in-asp-net-core.htm
+builder.Services.Configure<JsonOptions>(options =>
+{
+    options.SerializerOptions.PropertyNameCaseInsensitive = false;
+    options.SerializerOptions.PropertyNamingPolicy = null;
+    options.SerializerOptions.WriteIndented = true;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.UseExceptionHandler();
+
+app.UseOpenApi();
+app.UseSwaggerUi();
 
 var summaries = new[]
 {

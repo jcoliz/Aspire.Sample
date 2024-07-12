@@ -1,9 +1,8 @@
 ﻿@page "/weather"
-@using Aspire.Sample.Models
 @attribute [StreamRendering(true)]
 @attribute [OutputCache(Duration = 5)]
 
-@inject WeatherApiClient WeatherApi
+@inject Aspire.Sample.ApiClients.ApiClient _ApiClient
 
 <PageTitle>Weather</PageTitle>
 
@@ -30,7 +29,7 @@ else
             @foreach (var forecast in forecasts)
             {
                 <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.Date.ToString()</td>
                     <td>@forecast.TemperatureC</td>
                     <td>@forecast.TemperatureF</td>
                     <td>@forecast.Summary</td>
@@ -41,10 +40,10 @@ else
 }
 
 @code {
-    private WeatherForecast[]? forecasts;
+    private ICollection<Aspire.Sample.ApiClients.WeatherForecast>? forecasts;
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await WeatherApi.GetWeatherAsync();
+        forecasts = await _ApiClient.GetWeatherforecastAsync();
     }
 }
