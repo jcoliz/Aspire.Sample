@@ -1,10 +1,10 @@
 using Aspire.Sample.Data;
 using Aspire.Sample.MigrationService;
 
+// Inpsired by: https://github.com/dotnet/aspire-samples/tree/main/samples/DatabaseMigrations/DatabaseMigrations.MigrationService
+
 var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddHostedService<Worker>();
-
-//builder.Services.AddHostedService<ApiDbInitializer>();
 
 builder.AddServiceDefaults();
 

@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Aspire.Sample.MigrationService;
 
+// Inpsired by: https://github.com/dotnet/aspire-samples/tree/main/samples/DatabaseMigrations/DatabaseMigrations.MigrationService
+
 public partial class Worker(ILogger<Worker> logger, IServiceProvider serviceProvider, IHostApplicationLifetime lifetime) : BackgroundService
 {
     public readonly ILogger _logger = logger;
@@ -25,7 +27,6 @@ public partial class Worker(ILogger<Worker> logger, IServiceProvider serviceProv
 
         lifetime.StopApplication();
     }
-
 
     private static async Task RunMigrationAsync(DbContext dbContext, CancellationToken cancellationToken)
     {

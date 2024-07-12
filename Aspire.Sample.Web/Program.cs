@@ -11,11 +11,12 @@ builder.AddRedisOutputCache("cache");
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+// Get base address from injected config
+var baseaddress = builder.Configuration["services:api:https:0"];
+
 builder.Services.AddHttpClient<WeatherApiClient>(client =>
     {
-        // This URL uses "https+http://" to indicate HTTPS is preferred over HTTP.
-        // Learn more about service discovery scheme resolution at https://aka.ms/dotnet/sdschemes.
-        client.BaseAddress = new("https+http://api");
+        client.BaseAddress = new(baseaddress!);
     });
 
 var app = builder.Build();

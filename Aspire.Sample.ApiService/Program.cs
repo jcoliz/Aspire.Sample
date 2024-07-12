@@ -36,15 +36,4 @@ app.MapGet("/weatherforecast", async (IDataProvider data) =>
 
 app.MapDefaultEndpoints();
 
-//var scope = app.Services.CreateScope();
-
-//var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-
-// Postgres databases are always brought current by the application,
-// because they are only ever used for development and testing.
-//
-// SqlServer databases must be created by EF Core tooling or SQL scripts!
-
-//db.Database.Migrate();
-
 app.Run();
