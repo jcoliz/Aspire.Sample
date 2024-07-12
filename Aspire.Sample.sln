@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspire.Sample.Data.Postgres
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspire.Sample.Data.Postgres.MigrationsMain", "Aspire.Sample.Data.Postgres.MigrationsMain\Aspire.Sample.Data.Postgres.MigrationsMain.csproj", "{E2E76FA2-53A6-4F21-BB5C-BFF1BFC30A20}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspire.Sample.MigrationService", "Aspire.Sample.MigrationService\Aspire.Sample.MigrationService.csproj", "{336432DB-55DC-4B65-81DF-032D7B1EE929}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{E2E76FA2-53A6-4F21-BB5C-BFF1BFC30A20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2E76FA2-53A6-4F21-BB5C-BFF1BFC30A20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2E76FA2-53A6-4F21-BB5C-BFF1BFC30A20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{336432DB-55DC-4B65-81DF-032D7B1EE929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{336432DB-55DC-4B65-81DF-032D7B1EE929}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{336432DB-55DC-4B65-81DF-032D7B1EE929}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{336432DB-55DC-4B65-81DF-032D7B1EE929}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
