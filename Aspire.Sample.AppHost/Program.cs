@@ -20,10 +20,12 @@ builder.AddProject<Projects.Aspire_Sample_Web>("web")
     .WithReference(apiService)
     .WithReference(postgresDb);
 
+builder.AddNpmApp("vue", "../Aspire.Sample.Vue")
+    .WithReference(apiService)
+    .WithHttpEndpoint(env: "PORT")
+    .WithExternalHttpEndpoints()
+    .PublishAsDockerFile();
+
 var app = builder.Build();
-
-//var cstr = await postgresDb.Resource.Parent.GetConnectionStringAsync();
-
-//Console.WriteLine("Connection string: {0}", cstr);
 
 app.Run();
