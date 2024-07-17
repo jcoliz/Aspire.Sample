@@ -1,30 +1,13 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { useToast } from "primevue/usetoast";
-
-const toast = useToast();
 
 defineProps<{
   msg: string
 }>()
 
-const increaseCount = () => {
-    count.value++;
-
-    if (count.value === 3) {
-        toast.add({ severity: "success", summary: "PrimeVue", detail: "Welcome to PrimeVue + Create Vue", life: 3000 });
-
-        count.value = 0;
-    }
-};
-
-const count = ref(0);
-
-
 </script>
 
 <template>
-  <div class="greetings">
+  <div class="greetings" data-test-id="HelloWorld">
     <PrimeToast/>
     <h1 class="green">{{ msg }}</h1>
     <h3>
@@ -32,9 +15,6 @@ const count = ref(0);
       <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
       <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
     </h3>
-
-    <PrimeButton @click="increaseCount" label="Count!"></PrimeButton>
-    <h5 class="green">{{ count }}</h5>
   </div>
 </template>
 
