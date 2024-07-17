@@ -54,7 +54,7 @@ const client = new api.ApiClient("/api")
       </tr>
     </thead>
     <tbody>
-      <tr v-for="forecast in forecasts">
+      <tr v-for="(forecast,index) in forecasts" :key="forecast.id ?? index">
         <td>{{ forecast.date?.toLocaleDateString() }}</td>
         <td>{{ forecast.temperatureC }}</td>
         <td>{{ forecast.temperatureF }}</td>
