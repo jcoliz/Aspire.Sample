@@ -56,8 +56,6 @@ const client = new api.ApiClient("/api")
 
 <template>
     <main>
-        <PageTitle>Weather</PageTitle>
-
         <h1>Weather</h1>
 
         <p>This component demonstrates showing data loaded from a backend API service.</p>

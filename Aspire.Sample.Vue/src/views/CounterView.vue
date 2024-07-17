@@ -16,8 +16,6 @@ const count = ref(0);
 
 </script>
 <template>
-<PageTitle>Counter</PageTitle>
-
 <h1>Counter</h1>
 
 <p role="status">Current count: {{ count }}</p>
