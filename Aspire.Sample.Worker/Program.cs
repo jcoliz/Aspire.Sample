@@ -14,7 +14,7 @@ builder.Services.Configure<WeatherOptions>(
     builder.Configuration.GetSection(WeatherOptions.Section)
 );
 
-builder.Services.AddScoped<WeatherForecastFeature>();
+builder.Services.AddApplicationFeatures();
 builder.Services.AddScoped<IDataProvider, ApplicationDbContext>();
 
 builder.Services.AddHttpClient<WeatherClient>();

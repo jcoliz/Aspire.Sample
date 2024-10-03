@@ -13,7 +13,7 @@ builder.AddNpgsqlDbContext<ApplicationDbContext>("forecasts");
 // Add services to the container.
 builder.Services.AddProblemDetails();
 
-builder.Services.AddScoped<WeatherForecastFeature>();
+builder.Services.AddApplicationFeatures();
 builder.Services.AddScoped<IDataProvider, ApplicationDbContext>();
 
 builder.Services.AddEndpointsApiExplorer();
