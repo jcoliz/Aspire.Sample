@@ -9,7 +9,7 @@ namespace Microsoft.Extensions.DependencyInjection;
 public static class ApplicationFeaturesExtensions
 {
     /// <summary>
-    /// Add data provider services from this data source
+    /// Add data provider services from Postgres database
     /// </summary>
     /// <param name="services">Target to add into</param>
     /// <returns></returns>
