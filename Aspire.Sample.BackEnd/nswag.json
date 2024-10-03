@@ -3,7 +3,7 @@
   "defaultVariables": null,
   "documentGenerator": {
     "aspNetCoreToOpenApi": {
-      "project": "Aspire.Sample.ApiService.csproj",
+      "project": "Aspire.Sample.BackEnd.csproj",
       "documentName": "v1",
       "msBuildProjectExtensionsPath": null,
       "configuration": null,

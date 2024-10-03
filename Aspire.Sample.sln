@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspire.Sample.AppHost", "As
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspire.Sample.ServiceDefaults", "Aspire.Sample.ServiceDefaults\Aspire.Sample.ServiceDefaults.csproj", "{6BFE1020-4532-42D7-A4C5-D4BDD591C65A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspire.Sample.ApiService", "Aspire.Sample.ApiService\Aspire.Sample.ApiService.csproj", "{E40E3172-9DEB-4F77-A66C-9123B847514A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspire.Sample.BackEnd", "Aspire.Sample.BackEnd\Aspire.Sample.BackEnd.csproj", "{E40E3172-9DEB-4F77-A66C-9123B847514A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspire.Sample.Web", "Aspire.Sample.Web\Aspire.Sample.Web.csproj", "{5F899D07-03A7-4A3D-AACB-83AC191DCAF7}"
 EndProject

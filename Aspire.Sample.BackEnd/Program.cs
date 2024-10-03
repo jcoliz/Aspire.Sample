@@ -18,7 +18,7 @@ builder.Services.AddApplicationFeatures();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApiDocument(options =>
 {
-    options.Title = "Aspire.Sample Backend";
+    options.Title = "Aspire.Sample.Backend";
     options.Description = "Application boundary between .NET backend and frontend.";
 });
 
@@ -42,4 +42,4 @@ app.MapGet("/weatherforecast", (WeatherForecastFeature feature) => feature.ListF
 
 app.MapDefaultEndpoints();
 
-app.Run();
+await app.RunAsync();

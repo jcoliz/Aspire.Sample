@@ -11,7 +11,7 @@ var postgresDb = builder.AddPostgres("postgres", password:postgresPassword)
     // Add the default database to the application model so that it can be referenced by other resources.
     .AddDatabase("forecasts");
 
-var apiService = builder.AddProject<Projects.Aspire_Sample_ApiService>("api")
+var apiService = builder.AddProject<Projects.Aspire_Sample_BackEnd>("backend")
     .WithReference(postgresDb);
 
 builder.AddProject<Projects.Aspire_Sample_Worker>("worker")
