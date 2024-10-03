@@ -35,17 +35,6 @@ const client = new api.ApiClient("/api")
 }
 
 /**
- * Add a new forecast on the server
- */
- async function addForecast() {
-  forecasts.value = undefined
-  isLoading.value = true
-
-  await client.addWeatherForecast();
-  getData();
-}
-
-/**
  * When mounted, get the view data from server
  */
  onMounted(() => {
@@ -59,8 +48,6 @@ const client = new api.ApiClient("/api")
         <h1>Weather</h1>
 
         <p>This component demonstrates showing data loaded from a backend API service.</p>
-
-        <PrimeButton @click="addForecast" label="Add forecast"></PrimeButton>
 
         <p v-if="isLoading"><em>Loading...</em></p>
         <table v-else class="table">

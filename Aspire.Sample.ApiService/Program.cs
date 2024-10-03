@@ -39,8 +39,6 @@ app.UseOpenApi();
 app.UseSwaggerUi();
 
 app.MapGet("/weatherforecast", (WeatherForecastFeature feature) => feature.ListForecasts());
-app.MapPut("/weatherforecast", (WeatherForecastFeature feature) => feature.AddForecast())
-    .WithName("AddWeatherForecast");
 
 app.MapDefaultEndpoints();
 

@@ -42,33 +42,6 @@ public class WeatherForecastFeature(IDataProvider dataProvider)
     }
 
     /// <summary>
-    /// Add a forecast
-    /// </summary>
-    public async Task AddForecast()
-    {
-        using var activity = _activitySource.StartActivity(nameof(AddForecast), ActivityKind.Server);
-
-        try
-        {
-            var forecast = new WeatherForecast()
-            {
-                Id = 0,
-                Date = DateOnly.FromDateTime(DateTime.Now),
-                TemperatureF = Random.Shared.Next(-20, 55),
-                Summary = summaries[Random.Shared.Next(summaries.Length)]
-            };
-
-            dataProvider.Add(forecast);
-            await dataProvider.SaveChangesAsync();
-        }
-        catch (Exception ex)
-        {
-            activity?.RecordException(ex);
-            throw;
-        }
-    }
-
-    /// <summary>
     /// Update stored forecasts to match supplied forecasts
     /// </summary>
     /// <remarks>

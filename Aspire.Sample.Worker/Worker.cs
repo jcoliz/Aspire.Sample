@@ -25,6 +25,9 @@ public partial class Worker(
     {
         try
         {
+            // Need to wait for database to be migrated. Better would be an actual signal, of course.
+            await Task.Delay(TimeSpan.FromSeconds(4), stoppingToken).ConfigureAwait(false);
+
             while (!stoppingToken.IsCancellationRequested)
             {
                 var forecasts = await FetchForecastsAsync(stoppingToken).ConfigureAwait(false);
