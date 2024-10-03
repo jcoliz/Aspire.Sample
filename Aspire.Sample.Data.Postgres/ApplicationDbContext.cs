@@ -21,11 +21,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<WeatherForecast>().HasData(
-            new WeatherForecast() { Id = 1, TemperatureF = 101, Summary = "Seeded", Date = DateOnly.FromDateTime(DateTime.Now.AddDays(-1)) },
-            new WeatherForecast() { Id = 2, TemperatureF = 101, Summary = "Seeded", Date = DateOnly.FromDateTime(DateTime.Now.AddDays(-2)) },
-            new WeatherForecast() { Id = 3, TemperatureF = 101, Summary = "Seeded", Date = DateOnly.FromDateTime(DateTime.Now.AddDays(-3)) }
-        );
+        modelBuilder.Entity<WeatherForecast>().HasIndex(x => x.Date);
 
         base.OnModelCreating(modelBuilder);
     }
@@ -43,7 +39,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
     void IDataProvider.Add(object item) 
         => base.Add(item);
-    
+
     #endregion
 
     #region Query Runners
