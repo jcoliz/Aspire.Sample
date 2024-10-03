@@ -30,7 +30,7 @@ builder.AddProject<Projects.Aspire_Sample_Web>("web")
     .WithReference(postgresDb);
 #endif
 
-builder.AddNpmApp("vue", "../Aspire.Sample.Vue")
+builder.AddNpmApp("frontend", "../Aspire.Sample.FrontEnd")
     .WithReference(apiService)
     .WithHttpEndpoint(env: "PORT")
     .WithExternalHttpEndpoints()

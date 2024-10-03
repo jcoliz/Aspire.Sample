@@ -76,7 +76,7 @@
       "templateDirectory": null,
       "serviceHost": null,
       "serviceSchemes": null,
-      "output": "../Aspire.Sample.Vue/src/apiclient/apiclient.ts",
+      "output": "../Aspire.Sample.FrontEnd/src/apiclient/apiclient.ts",
       "newLineBehavior": "Auto"
     },
     "openApiToCSharpClient": {
