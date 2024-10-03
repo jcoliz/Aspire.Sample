@@ -1,6 +1,4 @@
-using Aspire.Sample.Application;
 using Aspire.Sample.Data;
-using Aspire.Sample.Providers;
 using Aspire.Sample.Worker;
 using Aspire.Sample.Worker.Api;
 using Aspire.Sample.Worker.Options;
@@ -14,8 +12,8 @@ builder.Services.Configure<WeatherOptions>(
     builder.Configuration.GetSection(WeatherOptions.Section)
 );
 
+builder.Services.AddDataProvider();
 builder.Services.AddApplicationFeatures();
-builder.Services.AddScoped<IDataProvider, ApplicationDbContext>();
 
 builder.Services.AddHttpClient<WeatherClient>();
 builder.Services.AddHostedService<Worker>();

@@ -1,6 +1,5 @@
 using Aspire.Sample.Application;
 using Aspire.Sample.Data;
-using Aspire.Sample.Providers;
 using Microsoft.AspNetCore.Http.Json;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,10 +10,10 @@ builder.AddServiceDefaults();
 builder.AddNpgsqlDbContext<ApplicationDbContext>("forecasts");
 
 // Add services to the container.
-builder.Services.AddProblemDetails();
 
+builder.Services.AddProblemDetails();
+builder.Services.AddDataProvider();
 builder.Services.AddApplicationFeatures();
-builder.Services.AddScoped<IDataProvider, ApplicationDbContext>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApiDocument(options =>
