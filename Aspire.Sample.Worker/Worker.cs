@@ -1,7 +1,8 @@
 using System.Runtime.CompilerServices;
-using System.Text.Json;
+using Aspire.Sample.Models;
 using Aspire.Sample.Worker.Api;
 using Aspire.Sample.Worker.Options;
+using AutoMapper;
 using Microsoft.Extensions.Options;
 
 namespace Aspire.Sample.Worker;
@@ -9,6 +10,7 @@ namespace Aspire.Sample.Worker;
 public partial class Worker(
     WeatherClient weatherClient, 
     IOptions<WeatherOptions> weatherOptions, 
+    IMapper mapper,
     ILogger<Worker> logger
     ) : BackgroundService
 {
@@ -61,7 +63,9 @@ public partial class Worker(
             }
             else
             {
-                logReceivedOk(result.Count);
+                var mapped = mapper.Map<ICollection<GridpointForecastPeriod>, WeatherForecast[]>(result);
+
+                logReceivedOk(mapped.Length);
             }
         }
         catch (TaskCanceledException)

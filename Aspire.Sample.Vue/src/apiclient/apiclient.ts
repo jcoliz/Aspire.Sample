@@ -93,9 +93,9 @@ export class ApiClient {
 export class WeatherForecast implements IWeatherForecast {
     id?: number;
     date?: Date;
-    temperatureC?: number;
-    summary?: string | undefined;
     temperatureF?: number;
+    summary?: string | undefined;
+    temperatureC?: number;
 
     constructor(data?: IWeatherForecast) {
         if (data) {
@@ -110,9 +110,9 @@ export class WeatherForecast implements IWeatherForecast {
         if (_data) {
             this.id = _data["Id"];
             this.date = _data["Date"] ? new Date(_data["Date"].toString()) : <any>undefined;
-            this.temperatureC = _data["TemperatureC"];
-            this.summary = _data["Summary"];
             this.temperatureF = _data["TemperatureF"];
+            this.summary = _data["Summary"];
+            this.temperatureC = _data["TemperatureC"];
         }
     }
 
@@ -127,9 +127,9 @@ export class WeatherForecast implements IWeatherForecast {
         data = typeof data === 'object' ? data : {};
         data["Id"] = this.id;
         data["Date"] = this.date ? formatDate(this.date) : <any>undefined;
-        data["TemperatureC"] = this.temperatureC;
-        data["Summary"] = this.summary;
         data["TemperatureF"] = this.temperatureF;
+        data["Summary"] = this.summary;
+        data["TemperatureC"] = this.temperatureC;
         return data;
     }
 }
@@ -137,9 +137,9 @@ export class WeatherForecast implements IWeatherForecast {
 export interface IWeatherForecast {
     id?: number;
     date?: Date;
-    temperatureC?: number;
-    summary?: string | undefined;
     temperatureF?: number;
+    summary?: string | undefined;
+    temperatureC?: number;
 }
 
 function formatDate(d: Date) {

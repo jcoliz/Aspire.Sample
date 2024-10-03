@@ -1,6 +1,10 @@
 ﻿namespace Aspire.Sample.Models;
 
-public record WeatherForecast(int Id, DateOnly Date, int TemperatureC, string? Summary)
+public record WeatherForecast
 {
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    public int Id { get; init; }
+    public DateOnly Date { get; init; }
+    public int TemperatureF {  get; init; }
+    public string? Summary { get; init; }
+    public int TemperatureC => (int)((TemperatureF - 32) * 0.5556);
 }

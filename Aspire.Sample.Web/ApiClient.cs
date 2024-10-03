@@ -321,14 +321,14 @@ namespace Aspire.Sample.ApiClients
         [System.Text.Json.Serialization.JsonConverter(typeof(DateFormatConverter))]
         public System.DateTimeOffset Date { get; set; }
 
-        [System.Text.Json.Serialization.JsonPropertyName("TemperatureC")]
-        public int TemperatureC { get; set; }
+        [System.Text.Json.Serialization.JsonPropertyName("TemperatureF")]
+        public int TemperatureF { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("Summary")]
         public string Summary { get; set; }
 
-        [System.Text.Json.Serialization.JsonPropertyName("TemperatureF")]
-        public int TemperatureF { get; set; }
+        [System.Text.Json.Serialization.JsonPropertyName("TemperatureC")]
+        public int TemperatureC { get; set; }
 
     }
 

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Worker">
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="automapper" Version="13.0.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
     <PackageReference Include="NSwag.MSBuild" Version="14.1.0">
@@ -20,6 +21,7 @@
   </ItemGroup>
 
     <ItemGroup>
+	    <ProjectReference Include="..\Aspire.Sample.Entities\Aspire.Sample.Entities.csproj" />
 	    <ProjectReference Include="..\Aspire.Sample.ServiceDefaults\Aspire.Sample.ServiceDefaults.csproj" />
     </ItemGroup>
 

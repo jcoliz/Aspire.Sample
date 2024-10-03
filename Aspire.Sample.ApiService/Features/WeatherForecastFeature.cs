@@ -50,13 +50,13 @@ public class WeatherForecastFeature(IDataProvider dataProvider)
 
         try
         {
-            var forecast = new WeatherForecast
-            (
-                0,
-                DateOnly.FromDateTime(DateTime.Now),
-                Random.Shared.Next(-20, 55),
-                summaries[Random.Shared.Next(summaries.Length)]
-            );
+            var forecast = new WeatherForecast()
+            {
+                Id = 0,
+                Date = DateOnly.FromDateTime(DateTime.Now),
+                TemperatureF = Random.Shared.Next(-20, 55),
+                Summary = summaries[Random.Shared.Next(summaries.Length)]
+            };
 
             dataProvider.Add(forecast);
             await dataProvider.SaveChangesAsync();
