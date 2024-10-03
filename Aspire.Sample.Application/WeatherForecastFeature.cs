@@ -13,11 +13,6 @@ public class WeatherForecastFeature(IDataProvider dataProvider)
 {
     private static readonly ActivitySource _activitySource = new(nameof(WeatherForecastFeature));
 
-    private static readonly string[] summaries =
-    [
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    ];
-
     /// <summary>
     /// List recent forecasts
     /// </summary>
@@ -28,7 +23,8 @@ public class WeatherForecastFeature(IDataProvider dataProvider)
 
         try
         {
-            var query = dataProvider.Get<WeatherForecast>().OrderByDescending(x => x.Date).Take(10);
+            var yesterday = DateOnly.FromDateTime( DateTime.Now - TimeSpan.FromDays(1) );
+            var query = dataProvider.Get<WeatherForecast>().Where(x => x.Date >= yesterday).OrderBy(x => x.Date).Take(10);
 
             var forecasts = await dataProvider.ToListNoTrackingAsync(query);
 
