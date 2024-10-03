@@ -15,7 +15,7 @@ export class ApiClient {
 
     constructor(baseUrl?: string, http?: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> }) {
         this.http = http ? http : window as any;
-        this.baseUrl = baseUrl ?? "";
+        this.baseUrl = baseUrl ?? "/api";
     }
 
     getWeatherforecast(): Promise<WeatherForecast[]> {
@@ -69,7 +69,7 @@ export class WeatherForecast implements IWeatherForecast {
 
     constructor(data?: IWeatherForecast) {
         if (data) {
-            for (let property in data) {
+            for (var property in data) {
                 if (data.hasOwnProperty(property))
                     (<any>this)[property] = (<any>data)[property];
             }

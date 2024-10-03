@@ -16,7 +16,7 @@ const forecasts = ref<api.IWeatherForecast[]>()
  /**
  * Client for communicating with server
  */
-const client = new api.ApiClient("/api")
+const client = new api.ApiClient()
 
 /**
  * Get items from the server
