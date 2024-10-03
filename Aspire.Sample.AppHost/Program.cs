@@ -2,9 +2,14 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var cache = builder.AddRedis("cache");
 
-var postgresDb = builder.AddPostgres("postgres")
+// Maintain a consistent password across launches, so can keep data consitent across launches
+var postgresPassword = builder.AddParameter("postgres-password", secret: true);
+
+var postgresDb = builder.AddPostgres("postgres", password:postgresPassword)
     // Set the name of the default database to auto-create on container startup.
     .WithEnvironment("POSTGRES_DB", "forecasts")
+    // Persist the data across launches
+    .WithDataVolume()
     // Add the default database to the application model so that it can be referenced by other resources.
     .AddDatabase("forecasts");
 
