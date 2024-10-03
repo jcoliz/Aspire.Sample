@@ -70,20 +70,19 @@ public class WeatherForecastFeature(IDataProvider dataProvider)
                 => new() { Id = old.Id, Date = old.Date, Summary = updated.Summary, TemperatureF = updated.TemperatureF };
 
             int numUpdated = 0;
-            if (divided.ContainsKey(true))
+            if (divided.TryGetValue(true, out var updateme))
             {
-                var updates = divided[true].Select(x => makeUpdate(old: dict[x.Date], updated: x));
-                dataProvider.UpdateRange(updates);
-                numUpdated = updates.Count();
+                var updated = updateme.Select(x => makeUpdate(old: dict[x.Date], updated: x));
+                dataProvider.UpdateRange(updated);
+                numUpdated = updated.Count();
             }
 
             // Straight up add forecasts which we don't already have
             int numAdded = 0;
-            if (divided.ContainsKey(false))
+            if (divided.TryGetValue(false, out var addme))
             {
-                var adds = divided[false];
-                dataProvider.AddRange(adds);
-                numAdded = adds.Count();
+                dataProvider.AddRange(addme);
+                numAdded = addme.Count();
             }
 
             // Commit the changes

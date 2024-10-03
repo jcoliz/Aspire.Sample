@@ -1,7 +1,5 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-var cache = builder.AddRedis("cache");
-
 // Maintain a consistent password across launches, so can keep data consitent across launches
 var postgresPassword = builder.AddParameter("postgres-password", secret: true);
 
@@ -22,11 +20,15 @@ builder.AddProject<Projects.Aspire_Sample_Worker>("worker")
 builder.AddProject<Projects.Aspire_Sample_MigrationService>("migrator")
        .WithReference(postgresDb);
 
+// Blazor front-end
+#if false
+var cache = builder.AddRedis("cache");
 builder.AddProject<Projects.Aspire_Sample_Web>("web")
     .WithExternalHttpEndpoints()
     .WithReference(cache)
     .WithReference(apiService)
     .WithReference(postgresDb);
+#endif
 
 builder.AddNpmApp("vue", "../Aspire.Sample.Vue")
     .WithReference(apiService)
@@ -36,4 +38,4 @@ builder.AddNpmApp("vue", "../Aspire.Sample.Vue")
 
 var app = builder.Build();
 
-app.Run();
+await app.RunAsync();

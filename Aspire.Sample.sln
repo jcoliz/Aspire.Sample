@@ -15,15 +15,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspire.Sample.Tests", "Aspi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspire.Sample.Entities", "Aspire.Sample.Entities\Aspire.Sample.Entities.csproj", "{941EA527-BCEB-4348-AC0C-57EC984EBD6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspire.Sample.Data.Postgres", "Aspire.Sample.Data.Postgres\Aspire.Sample.Data.Postgres.csproj", "{89F39B7F-B56F-4D0F-8DE3-79B2BEA166C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspire.Sample.Data.Postgres", "Aspire.Sample.Data.Postgres\Aspire.Sample.Data.Postgres.csproj", "{89F39B7F-B56F-4D0F-8DE3-79B2BEA166C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspire.Sample.Data.Postgres.MigrationsMain", "Aspire.Sample.Data.Postgres.MigrationsMain\Aspire.Sample.Data.Postgres.MigrationsMain.csproj", "{E2E76FA2-53A6-4F21-BB5C-BFF1BFC30A20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspire.Sample.Data.Postgres.MigrationsMain", "Aspire.Sample.Data.Postgres.MigrationsMain\Aspire.Sample.Data.Postgres.MigrationsMain.csproj", "{E2E76FA2-53A6-4F21-BB5C-BFF1BFC30A20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspire.Sample.MigrationService", "Aspire.Sample.MigrationService\Aspire.Sample.MigrationService.csproj", "{336432DB-55DC-4B65-81DF-032D7B1EE929}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspire.Sample.MigrationService", "Aspire.Sample.MigrationService\Aspire.Sample.MigrationService.csproj", "{336432DB-55DC-4B65-81DF-032D7B1EE929}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspire.Sample.Worker", "Aspire.Sample.Worker\Aspire.Sample.Worker.csproj", "{A14BEB2F-4219-4C70-A716-3DB42136C4E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspire.Sample.Worker", "Aspire.Sample.Worker\Aspire.Sample.Worker.csproj", "{A14BEB2F-4219-4C70-A716-3DB42136C4E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspire.Sample.Application", "Aspire.Sample.Application\Aspire.Sample.Application.csproj", "{6A4C0234-2666-41A3-90A3-6956D1AFEFD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspire.Sample.Application", "Aspire.Sample.Application\Aspire.Sample.Application.csproj", "{6A4C0234-2666-41A3-90A3-6956D1AFEFD4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{87249B5A-6D0A-4017-8BA9-728B55C3F5D1}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
