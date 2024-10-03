@@ -11,7 +11,8 @@ var postgresDb = builder.AddPostgres("postgres")
 var apiService = builder.AddProject<Projects.Aspire_Sample_ApiService>("api")
     .WithReference(postgresDb);
 
-builder.AddProject<Projects.Aspire_Sample_Worker>("worker");
+builder.AddProject<Projects.Aspire_Sample_Worker>("worker")
+       .WithReference(postgresDb);
 
 builder.AddProject<Projects.Aspire_Sample_MigrationService>("migrator")
        .WithReference(postgresDb);

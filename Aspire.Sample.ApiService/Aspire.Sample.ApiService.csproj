@@ -16,6 +16,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+    <ProjectReference Include="..\Aspire.Sample.Application\Aspire.Sample.Application.csproj" />
     <ProjectReference Include="..\Aspire.Sample.Data.Postgres\Aspire.Sample.Data.Postgres.csproj" />
     <ProjectReference Include="..\Aspire.Sample.Entities\Aspire.Sample.Entities.csproj" />
     <ProjectReference Include="..\Aspire.Sample.ServiceDefaults\Aspire.Sample.ServiceDefaults.csproj" />

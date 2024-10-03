@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using Aspire.Sample.Application;
 using Aspire.Sample.Models;
 using Aspire.Sample.Worker.Api;
 using Aspire.Sample.Worker.Options;
@@ -11,6 +12,7 @@ public partial class Worker(
     WeatherClient weatherClient, 
     IOptions<WeatherOptions> weatherOptions, 
     IMapper mapper,
+    IServiceProvider services,
     ILogger<Worker> logger
     ) : BackgroundService
 {
@@ -63,9 +65,19 @@ public partial class Worker(
             }
             else
             {
-                var mapped = mapper.Map<ICollection<GridpointForecastPeriod>, WeatherForecast[]>(result);
+                logReceivedOk(result.Count);
 
-                logReceivedOk(mapped.Length);
+                // TODO: Move out to another method
+
+                // We want a fresh scope every time we come through here.
+
+                var scope = services.CreateScope();
+                var feature = scope.ServiceProvider.GetRequiredService<WeatherForecastFeature>();
+
+                var mapped = mapper.Map<ICollection<GridpointForecastPeriod>, WeatherForecast[]>(result);
+                (var updated, var added) = await feature.UpdateForecasts(mapped);
+
+                logStoredOk(updated, added);
             }
         }
         catch (TaskCanceledException)
@@ -83,6 +95,9 @@ public partial class Worker(
 
     [LoggerMessage(Level = LogLevel.Error, Message = "{Location}: Received malformed response", EventId = 1018)]
     public partial void logReceivedMalformed([CallerMemberName] string? location = null);
+
+    [LoggerMessage(Level = LogLevel.Information, Message = "{Location}: Stored OK {CountUpdated} updated {CountAdded} added", EventId = 1020)]
+    public partial void logStoredOk(int countUpdated, int countAdded, [CallerMemberName] string? location = null);
 
     [LoggerMessage(Level = LogLevel.Error, Message = "{Location}: Failed", EventId = 1008)]
     public partial void logFail(Exception ex, [CallerMemberName] string? location = null);

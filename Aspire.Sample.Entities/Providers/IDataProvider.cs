@@ -25,6 +25,12 @@ public interface IDataProvider
     void AddRange(IEnumerable<object> items);
 
     /// <summary>
+    /// Update a range of items
+    /// </summary>
+    /// <param name="items">Items to update</param>
+    void UpdateRange(IEnumerable<object> items);
+
+    /// <summary>
     /// Save changes previously made
     /// </summary>
     /// <remarks>

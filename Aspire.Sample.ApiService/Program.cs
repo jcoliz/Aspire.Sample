@@ -1,4 +1,4 @@
-using Aspire.Sample.ApiService.Features;
+using Aspire.Sample.Application;
 using Aspire.Sample.Data;
 using Aspire.Sample.Providers;
 using Microsoft.AspNetCore.Http.Json;
