@@ -18,7 +18,6 @@ public partial class Worker(
 {
     private readonly ILogger<Worker> _logger = logger;
 
-
     /// <summary>
     /// Main loop which continually fetches readings, then sends to Log Analytics
     /// </summary>
@@ -28,8 +27,13 @@ public partial class Worker(
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                await FetchForecastAsync(stoppingToken).ConfigureAwait(false);
-                await Task.Delay(weatherOptions.Value.Frequency, stoppingToken);
+                var forecasts = await FetchForecastsAsync(stoppingToken).ConfigureAwait(false);
+                if (forecasts != null)
+                {
+                    await StoreForecastsAsync(forecasts).ConfigureAwait(false);
+                }
+
+                await Task.Delay(weatherOptions.Value.Frequency, stoppingToken).ConfigureAwait(false);
             }
         }
         catch (TaskCanceledException)
@@ -46,8 +50,10 @@ public partial class Worker(
     /// Fetch forecast from Weather Service
     /// </summary>
     /// <param name="stoppingToken">Cancellation token</param>
-    private async Task FetchForecastAsync(CancellationToken stoppingToken)
+    private async Task<ICollection<GridpointForecastPeriod>?> FetchForecastsAsync(CancellationToken stoppingToken)
     {
+        ICollection<GridpointForecastPeriod>? result = null;
+
         try
         {
             var forecast = await weatherClient.Gridpoint_ForecastAsync(
@@ -58,7 +64,7 @@ public partial class Worker(
             )
             .ConfigureAwait(false);
 
-            var result = forecast?.Properties.Periods;
+            result = forecast?.Properties.Periods;
             if (result is null || result.Count == 0)
             {
                 logReceivedMalformed();
@@ -66,19 +72,35 @@ public partial class Worker(
             else
             {
                 logReceivedOk(result.Count);
-
-                // TODO: Move out to another method
-
-                // We want a fresh scope every time we come through here.
-
-                var scope = services.CreateScope();
-                var feature = scope.ServiceProvider.GetRequiredService<WeatherForecastFeature>();
-
-                var mapped = mapper.Map<ICollection<GridpointForecastPeriod>, WeatherForecast[]>(result);
-                (var updated, var added) = await feature.UpdateForecasts(mapped);
-
-                logStoredOk(updated, added);
             }
+        }
+        catch (TaskCanceledException)
+        {
+            // Task cancellation is not an error, no action required
+        }
+        catch (Exception ex)
+        {
+            logFail(ex);
+        }
+
+        return result;
+    }
+
+    private async Task StoreForecastsAsync(ICollection<GridpointForecastPeriod> forecasts)
+    {
+        try
+        {
+            // We want a fresh scope every time we come through here.
+            var scope = services.CreateScope();
+            var feature = scope.ServiceProvider.GetRequiredService<WeatherForecastFeature>();
+
+            // Map the received forecasts into the form we store in the database
+            var mapped = mapper.Map<ICollection<GridpointForecastPeriod>, WeatherForecast[]>(forecasts);
+
+            // Send them to application logic to be updated
+            (var updated, var added) = await feature.UpdateForecasts(mapped).ConfigureAwait(false);
+
+            logStoredOk(updated, added);
         }
         catch (TaskCanceledException)
         {
