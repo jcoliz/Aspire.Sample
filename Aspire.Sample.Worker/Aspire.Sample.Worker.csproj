@@ -19,7 +19,12 @@
 		</PackageReference>
   </ItemGroup>
 
-  <!--Custom task to generate source code from OpenApi Specification before compilation-->
+    <ItemGroup>
+	    <ProjectReference Include="..\Aspire.Sample.ServiceDefaults\Aspire.Sample.ServiceDefaults.csproj" />
+    </ItemGroup>
+
+
+	<!--Custom task to generate source code from OpenApi Specification before compilation-->
   <Target Name="GenerateSources" BeforeTargets="BeforeBuild" Inputs="$(ApiClientConfigFile);$(ApiClientInputFile)" Outputs="$(ApiClientOutputFile)">
     <Exec Command="$(NSwagExe_Net80) run $(ApiClientConfigFile) /variables:OutputFile=../$(ApiClientOutputFile)" ConsoleToMSBuild="true" />
   </Target>

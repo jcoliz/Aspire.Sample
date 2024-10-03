@@ -11,5 +11,7 @@ builder.Services.Configure<WeatherOptions>(
 builder.Services.AddHttpClient<WeatherClient>();
 builder.Services.AddHostedService<Worker>();
 
+builder.AddServiceDefaults();
+
 var host = builder.Build();
 host.Run();
