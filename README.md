@@ -3,8 +3,9 @@
 The project extends the standard .NET Aspire sample with some key additions:
 
 * Retrieves actual forecasts from the National Weather Service
-* Stores forecasts in a database
+* Stores forecasts in a database, and handles migration
 * Uses Vue.JS for web UI
+* Generates TypeScript backend API
 
 ## Architecture
 
