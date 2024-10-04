@@ -23,7 +23,7 @@ public class WeatherForecastFeature(IDataProvider dataProvider)
 
         try
         {
-            var yesterday = DateOnly.FromDateTime( DateTime.Now - TimeSpan.FromDays(1) );
+            var yesterday = DateTime.UtcNow - TimeSpan.FromDays(1);
             var query = dataProvider.Get<WeatherForecast>().Where(x => x.Date >= yesterday).OrderBy(x => x.Date).Take(10);
 
             var forecasts = await dataProvider.ToListNoTrackingAsync(query);

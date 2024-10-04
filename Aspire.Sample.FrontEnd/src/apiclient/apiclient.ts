@@ -96,7 +96,7 @@ export class WeatherForecast implements IWeatherForecast {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["Id"] = this.id;
-        data["Date"] = this.date ? formatDate(this.date) : <any>undefined;
+        data["Date"] = this.date ? this.date.toISOString() : <any>undefined;
         data["TemperatureF"] = this.temperatureF;
         data["Summary"] = this.summary;
         data["TemperatureC"] = this.temperatureC;
@@ -110,12 +110,6 @@ export interface IWeatherForecast {
     temperatureF?: number;
     summary?: string | undefined;
     temperatureC?: number;
-}
-
-function formatDate(d: Date) {
-    return d.getFullYear() + '-' + 
-        (d.getMonth() < 9 ? ('0' + (d.getMonth()+1)) : (d.getMonth()+1)) + '-' +
-        (d.getDate() < 10 ? ('0' + d.getDate()) : d.getDate());
 }
 
 export class ApiException extends Error {

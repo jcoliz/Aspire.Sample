@@ -247,7 +247,6 @@ namespace Aspire.Sample.ApiClients
         public int Id { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("Date")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(DateFormatConverter))]
         public System.DateTimeOffset Date { get; set; }
 
         [System.Text.Json.Serialization.JsonPropertyName("TemperatureF")]
@@ -259,26 +258,6 @@ namespace Aspire.Sample.ApiClients
         [System.Text.Json.Serialization.JsonPropertyName("TemperatureC")]
         public int TemperatureC { get; set; }
 
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    internal class DateFormatConverter : System.Text.Json.Serialization.JsonConverter<System.DateTimeOffset>
-    {
-        public override System.DateTimeOffset Read(ref System.Text.Json.Utf8JsonReader reader, System.Type typeToConvert, System.Text.Json.JsonSerializerOptions options)
-        {
-            var dateTime = reader.GetString();
-            if (dateTime == null)
-            {
-                throw new System.Text.Json.JsonException("Unexpected JsonTokenType.Null");
-            }
-
-            return System.DateTimeOffset.Parse(dateTime);
-        }
-
-        public override void Write(System.Text.Json.Utf8JsonWriter writer, System.DateTimeOffset value, System.Text.Json.JsonSerializerOptions options)
-        {
-            writer.WriteStringValue(value.ToString("yyyy-MM-dd"));
-        }
     }
 
 
