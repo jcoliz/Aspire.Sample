@@ -4,5 +4,12 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   devServer: {
     port: parseInt(process.env.PORT ?? "5173"),
-  }
+  },
+  modules: [
+    'nuxt-primevue'
+  ],
+  primevue: {
+      /* Options */
+  },
+  css: ['primevue/resources/themes/aura-light-green/theme.css']
 })
