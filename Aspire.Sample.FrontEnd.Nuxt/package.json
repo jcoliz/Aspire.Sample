@@ -11,12 +11,15 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@types/bootstrap": "^5.2.10",
+    "bootstrap": "^5.3.3",
     "nuxt": "^3.13.0",
     "primevue": "^3.53.0",
     "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
-    "nuxt-primevue": "^3.0.0"
+    "nuxt-primevue": "^3.0.0",
+    "sass": "^1.79.4"
   }
 }
