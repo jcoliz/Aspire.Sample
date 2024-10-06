@@ -36,6 +36,12 @@ builder.AddNpmApp("frontend", "../Aspire.Sample.FrontEnd")
     .WithExternalHttpEndpoints()
     .PublishAsDockerFile();
 
+builder.AddNpmApp("nuxt", "../Aspire.Sample.FrontEnd.Nuxt")
+    .WithReference(apiService)
+    .WithHttpEndpoint(env: "PORT")
+    .WithExternalHttpEndpoints()
+    .PublishAsDockerFile();
+
 var app = builder.Build();
 
 await app.RunAsync();
