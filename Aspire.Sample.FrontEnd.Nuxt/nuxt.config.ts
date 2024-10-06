@@ -5,6 +5,14 @@ export default defineNuxtConfig({
   devServer: {
     port: parseInt(process.env.PORT ?? "5173"),
   },
+  routeRules: {
+    '/api/weatherforecast': { cors: true, proxy: `${process.env.services__backend__https__0}/weatherforecast` }
+  },
+  nitro: {
+    routeRules: {
+      '/api/weatherforecast': { cors: true, proxy: `https://www.coliz.com/weatherforecast` }
+    }
+  },
   modules: [
     'nuxt-primevue'
   ],

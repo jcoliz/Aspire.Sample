@@ -8,7 +8,6 @@ defineProps<{
 
 <template>
   <div class="greetings" data-test-id="HelloWorld">
-    <PrimeToast/>
     <h1 class="green">{{ msg }}</h1>
     <p>
       You’ve successfully created a project with
