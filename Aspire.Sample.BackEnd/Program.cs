@@ -38,7 +38,7 @@ app.UseExceptionHandler();
 app.UseOpenApi();
 app.UseSwaggerUi();
 
-app.MapGet("/weatherforecast", (WeatherForecastFeature feature) => feature.ListForecasts());
+app.MapGet("/weatherforecast", (WeatherForecastFeature feature) => feature.ListForecasts()).WithName("GetWeatherforecast");
 
 app.MapDefaultEndpoints();
 

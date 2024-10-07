@@ -20,12 +20,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<WeatherForecast>().HasData(
-            new WeatherForecast(Id: 1, TemperatureC: 101, Summary:"Seeded", Date: DateOnly.FromDateTime(DateTime.Now.AddDays(-1) )),
-            new WeatherForecast(Id: 2, TemperatureC: 102, Summary: "Seeded", Date: DateOnly.FromDateTime(DateTime.Now.AddDays(-2))),
-            new WeatherForecast(Id: 3, TemperatureC: 103, Summary: "Seeded", Date: DateOnly.FromDateTime(DateTime.Now.AddDays(-3)))
-        );
-
         base.OnModelCreating(modelBuilder);
     }
 

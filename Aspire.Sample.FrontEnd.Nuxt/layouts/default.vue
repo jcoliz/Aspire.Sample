@@ -9,7 +9,7 @@ import { RouterView } from "vue-router"
 
         <main>
             <div class="top-row px-4">
-                <a href="https://vuejs.org/" target="_blank">About</a>
+                <a href="https://nuxt.com/" target="_blank">About Nuxt</a>
             </div>
 
             <article class="content px-4">

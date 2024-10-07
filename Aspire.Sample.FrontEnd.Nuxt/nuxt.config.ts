@@ -5,14 +5,6 @@ export default defineNuxtConfig({
   devServer: {
     port: parseInt(process.env.PORT ?? "5173"),
   },
-  routeRules: {
-    '/api/weatherforecast': { cors: true, proxy: `${process.env.services__backend__https__0}/weatherforecast` }
-  },
-  nitro: {
-    routeRules: {
-      '/api/weatherforecast': { cors: true, proxy: `https://www.coliz.com/weatherforecast` }
-    }
-  },
   modules: [
     'nuxt-primevue'
   ],
@@ -23,4 +15,7 @@ export default defineNuxtConfig({
     'primevue/resources/themes/aura-light-green/theme.css',
     '~/assets/scss/styles.scss'
   ],
+  routeRules: {
+    '/api/**': { cors: true, proxy: `${process.env.services__backend__http__0}/**` }
+  },
 })
