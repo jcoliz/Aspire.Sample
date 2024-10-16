@@ -19,7 +19,17 @@ The project extends the standard .NET Aspire sample with some key additions:
 
 ## Getting Started
 
-The sample is configured and ready to go out of the box. In a terminal window:
+Before launching the sample the first time, please install the NPM packages needed by the frontend projects:
+
+```dotnetcli
+cd .\Aspire.Sample.FrontEnd.Nuxt
+npm install
+cd ..\Aspire.Sample.FrontEnd
+npm install
+```
+
+Now, you may launch the sample by loading the solution in Visual Studio and pressing `F5`.
+Or, in a terminal window:
 
 ```dotnetcli
 dotnet run --project .\Aspire.Sample.AppHost\
@@ -32,6 +42,6 @@ Then open the dashboard URL in a browser window, as described in the logs.
 
 ![Dashboard](./docs/images/screen-dashboard.png)
 
-Click on the Endpoint listed under the `vue` resource. Then click on "Weather" to see the sample in action:
+Click on the Endpoint listed under the `frontend` resource. Then click on "Weather" to see the sample in action:
 
 ![Vue](./docs/images/screen-vue.png)
