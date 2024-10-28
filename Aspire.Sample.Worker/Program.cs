@@ -21,5 +21,8 @@ builder.Services.AddHostedService<Worker>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.AddServiceDefaults();
 
+builder.Services.AddSingleton<WorkerMetrics>();
+builder.Services.AddOpenTelemetry().WithMetrics(m => m.AddMeter(WorkerMetrics.MeterName));
+
 var host = builder.Build();
 host.Run();

@@ -4,6 +4,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 var postgresPassword = builder.AddParameter("postgres-password", secret: true);
 
 var postgresDb = builder.AddPostgres("postgres", password:postgresPassword)
+    .WithPgWeb()
     // Set the name of the default database to auto-create on container startup.
     .WithEnvironment("POSTGRES_DB", "forecasts")
     // Persist the data across launches

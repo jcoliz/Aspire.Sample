@@ -11,6 +11,7 @@ namespace Aspire.Sample.Worker;
 public partial class Worker(
     WeatherClient weatherClient, 
     IOptions<WeatherOptions> weatherOptions, 
+    WorkerMetrics metrics,
     IMapper mapper,
     IServiceProvider services,
     ILogger<Worker> logger
@@ -71,10 +72,13 @@ public partial class Worker(
             if (result is null || result.Count == 0)
             {
                 logReceivedMalformed();
+                metrics.ConnectionMalformed();
             }
             else
             {
                 logReceivedOk(result.Count);
+                metrics.ConnectionOk();
+                metrics.ForecastsReceived(result.Count);
             }
         }
         catch (TaskCanceledException)
@@ -84,6 +88,7 @@ public partial class Worker(
         catch (Exception ex)
         {
             logFail(ex);
+            metrics.ConnectionFailed();
         }
 
         return result;
@@ -104,6 +109,7 @@ public partial class Worker(
             (var updated, var added) = await feature.UpdateForecasts(mapped).ConfigureAwait(false);
 
             logStoredOk(updated, added);
+            metrics.ForecastsAdded(added);
         }
         catch (TaskCanceledException)
         {
@@ -112,8 +118,11 @@ public partial class Worker(
         catch (Exception ex)
         {
             logFail(ex);
+            metrics.ForecastStorageFailed();
         }
     }
+
+    #region Logs
 
     [LoggerMessage(Level = LogLevel.Information, Message = "{Location}: Received OK {Count} forecasts", EventId = 1010)]
     public partial void logReceivedOk(int count, [CallerMemberName] string? location = null);
@@ -130,4 +139,5 @@ public partial class Worker(
     [LoggerMessage(Level = LogLevel.Critical, Message = "{Location}: Critical Failure", EventId = 1009)]
     public partial void logCriticalFail(Exception ex, [CallerMemberName] string? location = null);
 
+    #endregion
 }
