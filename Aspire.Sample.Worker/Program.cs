@@ -25,4 +25,4 @@ builder.Services.AddSingleton<WorkerMetrics>();
 builder.Services.AddOpenTelemetry().WithMetrics(m => m.AddMeter(WorkerMetrics.MeterName));
 
 var host = builder.Build();
-host.Run();
+await host.RunAsync();
